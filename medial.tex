@@ -1,0 +1,245 @@
+\documentclass[12pt]{article}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsopn}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage[all]{xy}
+\usepackage{enumerate}
+\usepackage{geometry}
+%\usepackage{biblatex}
+%\usepackage{hyperref}
+%\usepackage[autostyle]{csquotes}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage[
+    backend=biber,
+style=alphabetic,
+sorting=nyt,
+   % style=authoryear-icomp,
+    %sortlocale=de_DE,
+    %natbib=true,
+    %author=true,
+%style=verbose,
+%journal=true,
+%url=true, 
+%    doi=false,
+%    eprint=true
+]{biblatex}
+\addbibresource{STABLEreferences.bib}
+
+\usepackage[]{hyperref}
+\hypersetup{
+    colorlinks=true,
+}
+
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{half}{Halfspace Condition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{question}[thm]{Question}
+\newtheorem*{flashbang}{FlashBang Principle}
+\newtheorem*{Lefschetz}{Lefschetz theorem}
+\newtheorem*{hyp}{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{exx}[thm]{Example}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bq}{\bar{Q}[t]}
+\newcommand{\bb}{\bullet}
+\newcommand{\del}{\partial}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\mR}{\bR^\times_{>0}}
+\newcommand{\conv}{\overbar{conv}}
+\newcommand{\sub}{\del^c \psi^c(x')}
+\newcommand{\subb}{\del^c \psi^c(x'')}
+\newcommand{\hh}{\hookleftarrow}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\Gm}{\mathbb{G}_m}
+\newcommand{\uF}{\underline{F}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sT}{\mathscr{T}_g}
+\newcommand{\sW}{\mathscr{W}}
+\newcommand{\bX}{\overline{X}^{BS/\bQ}}
+\newcommand{\sZ}{\mathscr{Z}}
+\newcommand{\cd}{c_{\Delta}}
+\newcommand{\tc}{\tilde{c}}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{J. H. Martel}
+\lhead{\today}
+\rfoot{}
+
+\section{Medial Axis Transform}
+The purpose of this section is to compare some familiar properties of the medial axis transform $A\mapsto M(A)$ (introduced by \cite{Blum}) with the singularity structures formalized in our Kantorovich contravariant functor $Z: 2^{\del A} \to 2^A$ (introduced in [ref]). To compare the functors $Z$ with medial axis transform requires we interpret the inclusion $M(A) \hookrightarrow A$ in the category of mass transportation.
+ 
+%We recall the functor $Z$ is defined by an abundant source measure $(X,\sigma)$, target measure $(Y,\tau)$, satisfying $\int_X \sigma  \leq \int_Y \tau$, and costs $c:X\times Y\to \bR$. 
+
+Let $A$ be a bounded open subset of $\bR^N$. The medial axis $M(A)$ introduced by Blum consists of all $x\in A$ for which $dist(x, \del A)$ is attained by at least two distinct points, \begin{equation}\label{medialaxis}   M(A):=\{x\in A~|~ \# argmin_{y\in \del A} \{ d(x,y)\} \geq 2 \}.\end{equation}
+A long-known ``folk theorem" states that the inclusion $M(A) \hookrightarrow A$ is a homotopy-isomorphism, and even a strong deformation retract. This implies $M(A)$ contains all the topology of $A$, and a connected subset whenever $A$ is. A formal proof is established \cite{Lieutier}. We do not know if $M(A)$ is a strong retract for more general Riemannian spaces $(X,d)$.
+
+% although the interested reader may compare \cite{nass2007medial} for medial axes for Riemannian manifolds. 
+
+The medial axis transform corresponds to a ``degenerate" transport problem in the following sense: if $A \hh \bR^N$ is bounded open subset, then we nominate \begin{equation}\label{mu} \mu:=\frac{1}{\mathscr{H}_A[A]} \mathscr{H}_A \end{equation} as the canonical probability measure on the source $A$. Consider the probability measures $\pi$ on $A\times \del A$ for which $proj_A \# \pi=\mu$ and with unconstrained second marginal $proj_{\del A} \# \pi$. Here $proj_A$, $proj_{\del A}$ are the canonical projections $A\times \del A \to A, \del A$. The set-mapping \begin{equation}\label{T} T:x \mapsto argmin_{y\in \del A} \{d(x,y)\}, ~~~\text{~for~} x\in A,\end{equation} defines a measurable set-valued map $T: A\to \del A$. The pushforward \begin{equation}\label{nu} \nu:=T\# \mu\end{equation} is a probability measure on $\del A$ with $spt(\nu)=\del A$. With respect to, say, quadratic cost $c=d^2/2$ or distance cost $c=d$, the map $x\mapsto T(x)$ defines a $c$-optimal transport from $\mu$ to $\nu$, with $c$-optimal coupling $\pi=(Id \times T)\# \mu$ on $A \times \del A$. 
+
+Finally $M(A)$ coincides with the locus-of-discontinuity of $T: A\to \del A$, or more specifically the singularity $Z_2$ defined by Kantorovich's contravariant functor $Z=Z(\mu, \nu, d):$ $2^{\del A} \to 2^A$. Thus we arrive at the identification $M(A)=Z_2$ for the specific coupling program defined by $\mu, \nu, c$. This identification suggests the following generalization of medial axis transform: for general probability measures $\nu \in \Delta(\del A)$ on the boundary of $A$, we may study the $c$-optimal couplings $\pi$ from $\mu$ to $\nu$, and obtain a Singularity functor $Z(\mu, \nu, c)$. The generalized medial axis in this setting is $Z_2$, i.e. the ``locus-of-discontinuity" of the optimal transport.
+
+
+
+Our thesis developed a Reduction-to-Singularity principle, and identifies conditions for which, say, the inclusion $Z_2 \hh Z_1$ is a homotopy-isomorphism. In the above setting with $Z=Z(\mu, \nu, c)$, we have $A=Z_1$, $M(A)=Z_2$, and naturally we inquire whether the hypotheses of our topological theorems are satisfied for any particular costs $c$. 
+
+If we fix $c=d^2/2$, then our Theorem B takes the following form. For $x\in A=Z_1$, let $y_0:=T(x)$. Then we define 
+$$\eta(x,y):=| c(x,y)-c(x,y_0) |^{-1/2} \cdot \nabla_x (c(x,y_0) - c(x,y)), ~~\text{for~} y\in \del A - \{y_0\}.$$ Observe that $c(x,y)-c(x,y_0)>0$ is nonvanishing throughout $A-M(A)$ in the above notations. The hypotheses of our Theorem B require the following hypotheses \eqref{mateta1}, \eqref{mateta2} be satisfied for $x\in A- M(A)=Z_1-Z_2$: the averaged Bochner integral defined as \begin{equation} \eta(x,avg):=(\nu[\del A-\{y_0\}])^{-1} \cdot \int_{\del A - \{y_0\}} \eta(x,y) d\nu(y),\end{equation} and we require that \begin{equation}\label{mateta1}   \eta(x,avg) \text{~is nonzero finite tangent vector,~}\end{equation} and there exists a constant $C>0$ such that \begin{equation}\label{mateta2} ||\eta(x,avg)|| \geq C >0\end{equation} for $x\in A- M(A)$, uniformly with $x$. 
+
+%There are two items to establish:
+
+%(i) the nonvanishing of $\eta(x,avg)$; and
+
+%(ii) the existence of uniform constant $C>0$ as defined in \eqref{mateta2}.
+
+
+% and measuring ``geometric distances" $d$ on $A$. The induced costs $c=d$ or $c=d^2/2$ are unambigous. 
+
+The verification of hypotheses \eqref{mateta1}--\eqref{mateta2} can be difficult to verify. We need also remark on a complication arising from the nonconvexity of $A$. What is the natural distance function $d$ on $A\subset \bR^N$, and the natural geometric ``transport cost" from a unit mass at $x\in A$ to target mass $y\in \del A$? 
+
+There are at least two popular possibilities. First we may restrict the ambient euclidean distance $d_{\bR^N}(x,y)=||x-y||$ to $A\times \del A \subset \bR^N \times \bR^N$. But this restriction does not represent a path length distance in the sense of Gromov \cite[1.A-B]{lafontaine2001metric}. In otherwords the restriction does not represent geodesic transport in $A$, and there is no variational description of the metric in terms of shortest-length curves. 
+
+A second approach defines $d=d_A$ as the induced length distance defined by $$d_A(x,y)=\inf_\gamma \int_\gamma Length(\gamma), $$ where the infimum is over all curves $\gamma:[0,1] \to A$ contained in $A$ with $\gamma(0)=x$, $\gamma(1)=y$. The reader will observe that both possibilities define coincident medial axes $M(A)$ according to \eqref{medialaxis}, since euclidean balls are geodesically convex. The induced length distance $d=d_A$ is possibly most preferred by metric geometers, yet is difficult to numerically evaluate. Moreover geodesics with respect to the induced path distance $c=d_A$ can oftentimes branching. The possible branching of geodesics implies gradients $y\mapsto \nabla_x d(x,y)$ are noninjective maps $\del A \to T_x A$ for $x\in A$. This possible noninjectivity violates an important transport condition called (Twist), and is obstruction to hypothesis \eqref{mateta1}. Thus neither the restricted distance $c=d|A\times \del A$ nor the induced distance $c=d_A$ are especially convenient costs. 
+
+We explore a third possibility: namely a variant of Hubbard's so-called $1/d$-metric (see \cite[Ch. 2.2, pp.33]{hubbard}). Let $A\subset \bR^N$ be open subset. Then for every real parameter $\alpha$ we define the Riemannian metric \begin{equation}\label{ga} g^\alpha:=(dist(x, \bR^N -A))^{-\alpha} \cdot ds^2,\end{equation} where $$ds^2=dx_1^2+dx_2^2+\cdots$$ is the standard Euclidean metric on $\bR^N$. The choice $\alpha=0$ yields $g^0=ds^2$. 
+
+
+[insert definition/formula of sectional curvature]  
+
+\begin{lem}
+For every parameter $\alpha \geq 0$, the Riemannian metric $g^\alpha$ has nonpositive sectional curvature $\kappa \leq 0$ throughout $A$. 
+\end{lem}
+\begin{proof}
+We follow Hubbard's proof \cite[Thm. 2.2.9, pp.36]{hubbard}, where the key observation is that: for every $y\in \bR^N-A$, the function $f_y(x):=-\log||x-y||^{\alpha}$ is subharmonic for $x\in A$ (in fact, the function is harmonic). Therefore the supremum $$f(x):=\sup_{y\in \del A} f_y(x)=\sup_{y\in \bR^N-A} f_y(x)$$ is subharmonic. But the metric $g^\alpha$ is conformal to the standard Euclidean metric $ds^2$, and the formula for the sectional curvature of conformal metrics is well-known, namely $\kappa=-\Delta \log f \cdot ds^2$, which is $\leq 0$ by above subharmonicity.
+\end{proof}
+
+
+%We prefer any $\alpha>2$, say $\alpha=3$ for simplicity. 
+
+For variable $\alpha$ the metric $g^\alpha$, and the corresponding path length distance $d^\alpha(x,y)$ is possibly incomplete on $A$. For $A$ an open subset there may exist Cauchy sequences (relative to the distance $d^\alpha$) $\{x_k\}_{k\in \bN}$ in $A$ which have no limit point in $A$. Despite the metric diverging at $\del A$, we prefer the lengths of geodesics $\gamma:[0,1] \to A$ converging to $\del A$ to have finite length, and seek parameters $\alpha$ for which $$Length(\gamma)=\int_0^1 \sqrt{g^\alpha(\gamma'(t), \gamma'(t))}. dt <+\infty.$$ 
+
+
+\begin{exx}
+Hubbard's definition of $1/d$-metric corresponds to $\alpha=2$ in equation \eqref{ga}. Amazingly the $1/d$-metric on the upper halfspace $H:=\{x_1 > 0\}$ in $\bR^N$ in $x_1, \ldots, x_N$ coordinates is the complete constant-curvature hyperbolic metric on $H$! 
+
+Yet for $\alpha>2$ the metric is incomplete. The curve $\gamma(t)=(1-t, 0, 0, \cdots)$ for $0\leq t \leq 1$ is a curve in $H$. The $g^\alpha$-length of $\gamma$ evaluates to $\int_0^1 (1-t)^{-\alpha/2}dt,$ which is improper integral converging to $$1<(1-\alpha/2)^{-1}<+\infty$$ when $\alpha>2$. When $\alpha>2$ we can uniquely extend $d^\alpha$ to a complete metric pairing $$\tilde{d^\alpha}: \overline{H} \times \overline{H} \to \bR,$$  where $\overline{H}=\{x_1\geq 0\}$. Note that $\overline{H}$ is not homeomorphic to adjoining a sphere at-infinity $S_\infty^2$ to $H$. 
+
+%[Error above?: does metric completion $\overline{H}$ include a point-at-infinity? NO]
+
+\end{exx}
+
+\begin{exx}
+The $1/d$-metric ($\alpha=2$) on the once-punctured plane $A=\bR^2-\{0\}$ is isometric to a straight cylinder of circumference $2\pi$ (\cite[Ex.2.2.6]{hubbard}). The same computations as previous example show: for $\alpha>2$, the metric $d^\alpha$ is incomplete with completion $\tilde{d^\alpha}$ defining a cone with angle [FORMULA] at the vertex origin. 
+\end{exx}
+
+
+The two examples lead to the following observation.
+
+[ERROR? regularity assumptions required on $\del A$ or else lengths dependant on ``angle-of-impact"]
+\begin{lem}
+Let $A$ be open subset of $\bR^N$. For parameters $\alpha>2$ the metric $g^\alpha$ is incomplete metric on $A$, and geodesics in $A$ converging to the boundary $\del A$ have a uniquely well-defined finite length with respect to $g^\alpha$.  
+\end{lem}
+\begin{proof}
+
+
+\end{proof}
+
+Now we may finally propose a more interesting mass-transport interpretation of medial axis transforms. Let $A$ be bounded open subset of $\bR^N$, with boundary $\del A$, and probability measures $\mu, \nu$ as previously defined. Then we choose cost $c=\tilde{d^\alpha}: A\times \del A \to \bR$ defined by restricting the completion to $A\times \del A \subset \overline{A} \times \overline{A}$. The subvarieties $Z_2, M(A)$ will not coincide set-theoretically, but they do coincide \emph{topologically}: 
+
+\begin{thm}
+Let $c=\tilde{d^\alpha}$ be the metric completion of $d^\alpha$ to $\overline{A}$, and let $Z=Z(\mu, \nu, c): 2^{\del A} \to 2^A$ be the Singularity functor with respect to $(\mu, \nu, c)$ as defined in \eqref{mu}, \eqref{nu}. Then sufficient (UHS) Conditions are satisfied to apply Theorem B and the inclusion $Z_2 \hookrightarrow A$ is a homotopy isomorphism and even a strong deformation retract.
+\end{thm}
+
+
+
+%Then the singularity functor $Z(\mu, \nu,c)$, and in particular the subvariety denoted $Z_2$, coincides with the medial axis. In otherwords we have the identity \begin{equation}\label{hubc} Z_2 = M(A), ~~\text{for~} Z(\mu, \nu ,c): 2^{\del A} \to 2^A.\end{equation} 
+
+
+
+
+
+
+
+
+
+
+
+
+%[FALSE==>]Question: is the induced distance $d_A$ ``non branching"? I.e., if $\gamma, \gamma':[0,1] \to A$ are geodesics in $A$ with respect to $d_A$ with $\gamma(0)=\gamma'(0)$ and $\gamma(1)\neq \gamma'(1)$, then $\gamma(t)\neq \gamma'(t)$ for all $0<t<1$. The nonbranching implies the gradient map 
+
+
+
+
+
+
+
+
+
+
+%For every $x\in Z_1 - Z_2$, we need verify that a collection of vectors $\eta(x,y)$, $y\in \del A$, satisfies a (UHS) Condition. Briefly (UHS) requires an averaged tangent vector $\eta(x,avg)$ be nonzero, uniformly with $x\in Z_1-Z_2$. 
+
+%\begin{thm}
+%In the above notation, the inclusion $(Z_2=M(A)) \hookrightarrow (Z_1=A)$ is a homotopy-isomorphism if [INCOMPLETE]
+%\end{thm} 
+
+% [ref]. This author's opinion is that Kantorovich's functor is superior in several respects to MAT, and suffers none of the well-known defects of MAT. Searching for "Medial Axis transform" on GoogleScholar returns approximately 80,000 hits, whereas Kantorovich Singularity returns approximately zero. 
+
+
+%Secondly, the medial axis $M(A)$ is not generally a homological cycle in $A$. In general $M(A)$ is a nonsmooth hypersurface in $A$ (codimension one). If the boundary $\del A$ is smooth (or $C^{1,1}$ is sufficient), then $M(A)$ is disjoint from $\del A$ and ``one-ended fingers" will protrude from $M(A)$. At the corners of $\del A$ (i.e. points with nonunique outward normals), we find $M(A)$ will have ``fingers" extending and intersecting $\del A$. Every ``finger" which does not extend into $\del A$ implies $M(A)$ is not a homological cycle, i.e. the singular boundary is nonzero $\del M(A) \neq 0$. [Insert images]. 
+
+%By contrast the contravariance of the functor $Z: 2^Y \to 2^X$, defined $Z(Y_I)=\cap_{y\in Y_I} \del^c \psi(y)$, implies an important adjunction formula $$\del _X Z(\alpha)=Z(\delta_Y \alpha),$$ where $\alpha$ is a singular $k$-chain on $Y$ for some integer $k\geq 1$. [ref]. The functor can be filtrated according to dimension and obtain a descending chain $$(X=Z_0) \hh (A=Z_1) \hh Z_2 \hh Z_3 \hh \cdots$$ where $codim_X (Z_{j+1}) = j$ for every $j \geq 0$. The adjunction formula then implies $\del_X Z_j=0$ for every $j\geq 1$. In otherwords the closed subvarieties $Z_{j+1}$ are homological $j$-degree cycles relative to the active domain $A=Z_1$ in $X$ for every $j\geq 0$. We note $Z_j$ is empty for sufficiently large $j\geq 1$.  
+
+The completion of Hubbard's $1/d$-distance and the cost $c=\tilde{d^\alpha}$ yields an alternative to the medial axis $M(A)$ in the subvariety $Z_2$ defined by $c$-optimal couplings. We propose this construction of $Z_2$ yields a useful improvement over the conventional definition of $M(A)$ per \eqref{medialaxis}. Firstly the medial axis is defined on the category of open subsets $A$ of $\bR^N$, whereas the functors $Z$ are more generally defined for measure spaces. 
+
+Another objection to $M(A)$ is it's notorious instability (c.f. \cite[\S 1]{Sun}). Small perturbations of the open subset $A$ often leads to large changes in the medial axis $M(A)$. Therefore $M(A)$ suffers large variability when $A$ has background noise. Many authors have suggested modified media axes (c.f. \cite{Foskey}, \cite{Tam} and references therein) which ``filter out" possible noise. On the other hand, it's well-known that optimal transportation enjoys strong continuity properties, e.g. $c$-optimal semicouplings vary continuously with respect to perturbations of source and target measures $\sigma, \tau$ (c.f. \cite[Ch. 28]{Vil1}). The stability of optimal semicouplings with respect to ``noise" also implies the singularity functors $Z$ vary continuously -- in a suitably natural sense -- with respect to variations in $(\sigma, \tau, c)$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography[title={References}]
+\end{document}
