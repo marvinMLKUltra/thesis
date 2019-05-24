@@ -3,6 +3,10 @@ We include materials related to our thesis on Optimal Transportation &amp; Topol
 
 The document "ut-thesis.pdf" is copy of my (yet unsubmitted) PhD thesis at University of Toronto. Comments are welcome at marvinlessknown2714@protonmail.com
 
+The document "MAT.pdf" contains a short proof of the Medial Axis Theorem. 
+Compare with Lieutier's proof https://www.sciencedirect.com/science/article/pii/S0010448504000065
+
+
 The documents "alexandrov-nov.pdf" and "medial.pdf" are articles in currently in development. 
 
 The document "alexandrov" illustrates applications of our thesis to Souls and Splitting theorems from Alexandrov geometry. 
